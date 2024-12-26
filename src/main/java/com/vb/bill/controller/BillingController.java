@@ -12,20 +12,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/billing")
 public class BillingController {
 
-
     @Autowired
     private BillingService billingService;
 
     @PostMapping("/create")
     public Billing createBill(@RequestBody BillingDTO billingDTO) {
         log.info("createBill method started");
-        return billingService.createBill(billingDTO);
+        Billing billing = billingService.createBill(billingDTO);
+        return billing;
     }
 
     @GetMapping("/get/{id}")
     public Billing getBillingById(@PathVariable Long id) {
         return billingService.getBillingById(id);
-
     }
 
     @PutMapping("/update/{id}")
@@ -39,6 +38,5 @@ public class BillingController {
         return billingService.deleteBillingDetails(id);
 
     }
-
 
 }
